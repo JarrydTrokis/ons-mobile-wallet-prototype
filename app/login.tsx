@@ -3,6 +3,7 @@ import { defaultStyles } from "@/constants/Styles";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
+import { navigate } from "expo-router";
 import { useState } from "react";
 import {
   View,
@@ -163,9 +164,8 @@ const Page = () => {
             Continue with email{" "}
           </Text>
         </TouchableOpacity>
-
         <TouchableOpacity
-          onPress={() => onSignIn(SignInType.Google)}
+          onPress={() => router.push("/(authenticated)/(tabs)/home")}
           style={[
             defaultStyles.pillButton,
             {
@@ -176,27 +176,9 @@ const Page = () => {
             },
           ]}
         >
-          <Ionicons name="logo-google" size={24} color={"#000"} />
+          <Ionicons name="airplane" size={24} color={"#000"} />
           <Text style={[defaultStyles.buttonText, { color: "#000" }]}>
-            Continue with email{" "}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => onSignIn(SignInType.Apple)}
-          style={[
-            defaultStyles.pillButton,
-            {
-              flexDirection: "row",
-              gap: 16,
-              marginTop: 20,
-              backgroundColor: "#fff",
-            },
-          ]}
-        >
-          <Ionicons name="logo-apple" size={24} color={"#000"} />
-          <Text style={[defaultStyles.buttonText, { color: "#000" }]}>
-            Continue with email{" "}
+            Continue as guest
           </Text>
         </TouchableOpacity>
       </View>
