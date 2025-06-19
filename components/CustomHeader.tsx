@@ -22,7 +22,7 @@ const CustomHeader = () => {
           },
         ]}
       >
-        <Link href={"/"} asChild>
+        <Link href={"/(authenticated)/(modals)/account"} asChild>
           <Pressable
             style={{
               width: 40,
@@ -34,7 +34,7 @@ const CustomHeader = () => {
             }}
           >
             <Text style={{ color: "#fff", fontWeight: "500", fontSize: 16 }}>
-              SG
+              JD
             </Text>
           </Pressable>
         </Link>
@@ -53,9 +53,6 @@ const CustomHeader = () => {
         </View>
         <View style={styles.circle}>
           <Ionicons name={"stats-chart"} size={20} color={Colors.dark} />
-        </View>
-        <View style={styles.circle}>
-          <Ionicons name={"card"} size={20} color={Colors.dark} />
         </View>
       </View>
     </BlurView>

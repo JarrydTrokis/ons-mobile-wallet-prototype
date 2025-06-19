@@ -1,16 +1,16 @@
-import Colors from "@/constants/Colors";
+import Colors, { OnsColors } from "@/constants/Colors";
 import { defaultStyles } from "@/constants/Styles";
+import Svg, {
+  Defs,
+  LinearGradient,
+  Stop,
+  Rect,
+  Text as SvgText,
+} from "react-native-svg";
 
-import { Ionicons } from "@expo/vector-icons";
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { useHeaderHeight } from "@react-navigation/elements";
+import activities from "@/mock/activity";
 
 const Page = () => {
   const headerHeight = useHeaderHeight();
@@ -23,56 +23,91 @@ const Page = () => {
       }}
     >
       <View style={styles.account}>
-        <View style={styles.row}>
-          <Text style={styles.balance}>100</Text>
-          <Text style={styles.currency}>€</Text>
+        <View style={styles.cardContainer}>
+          <Svg height="200" width="320" viewBox="0 0 320 200">
+            <Defs>
+              <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+                <Stop
+                  offset="0"
+                  stopColor={OnsColors.onsColorNightBlue}
+                  stopOpacity="1"
+                />
+                <Stop
+                  offset="1"
+                  stopColor={OnsColors.onsColorLeafGreen}
+                  stopOpacity="1"
+                />
+              </LinearGradient>
+            </Defs>
+            <Rect
+              x="0"
+              y="0"
+              width="320"
+              height="200"
+              rx="20"
+              ry="20"
+              fill="url(#grad)"
+            />
+            <SvgText
+              x="20"
+              y="40"
+              fill="white"
+              fontSize="16"
+              fontFamily="System"
+            >
+              ONS Wallet
+            </SvgText>
+            <SvgText
+              x="20"
+              y="100"
+              fill="white"
+              fontSize="48"
+              fontFamily="System"
+              fontWeight="bold"
+            >
+              £100.00
+            </SvgText>
+            <SvgText
+              x="280"
+              y="160"
+              fill="white"
+              fontSize="14"
+              fontFamily="System"
+              textAnchor="end"
+            >
+              John Doe
+            </SvgText>
+            <SvgText
+              x="280"
+              y="180"
+              fill="white"
+              fontSize="12"
+              fontFamily="System"
+              textAnchor="end"
+            >
+              0x1234567890abcdef
+            </SvgText>
+          </Svg>
         </View>
-        <TouchableOpacity
-          style={[
-            defaultStyles.pillButtonSmall,
-            { backgroundColor: Colors.lightGray, marginVertical: 20 },
-          ]}
-        >
-          <Text style={[defaultStyles.buttonTextSmall, { color: Colors.dark }]}>
-            Accounts
-          </Text>
-        </TouchableOpacity>
       </View>
 
       <View style={styles.actionRow}></View>
 
-      <Text style={defaultStyles.sectionHeader}>Transactions</Text>
+      <Text style={defaultStyles.sectionHeader}>Activity</Text>
       <View style={styles.transactions}>
-        {[
-          {
-            id: "1",
-            title: "Salary",
-            amount: 2000,
-            date: new Date("2023-10-01T10:00:00"),
-          },
-          {
-            id: "2",
-            title: "Groceries",
-            amount: -150,
-            date: new Date("2023-10-02T12:30:00"),
-          },
-          {
-            id: "3",
-            title: "Utilities",
-            amount: -100,
-            date: new Date("2023-10-03T14:15:00"),
-          },
-        ].map((transaction) => (
+        {activities.map((transaction) => (
           <View
             key={transaction.id}
-            style={{ flexDirection: "row", alignItems: "center", gap: 16 }}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 16,
+            }}
           >
             <View style={styles.circle}>
-              <Ionicons
-                name={transaction.amount > 0 ? "add" : "remove"}
-                size={24}
-                color={Colors.dark}
-              />
+              <Text style={{ color: Colors.primary, fontWeight: "bold" }}>
+                {transaction.emoji || "💰"}
+              </Text>
             </View>
 
             <View style={{ flex: 1 }}>
@@ -81,17 +116,26 @@ const Page = () => {
                 {transaction.date.toLocaleString()}
               </Text>
             </View>
-            <Text>{transaction.amount}€</Text>
+            <Text>
+              {transaction.amount < 0
+                ? `-£${Math.abs(transaction.amount)}`
+                : `£${transaction.amount}`}
+            </Text>
           </View>
         ))}
       </View>
-      <Text style={defaultStyles.sectionHeader}>Widgets</Text>
     </ScrollView>
   );
 };
 const styles = StyleSheet.create({
+  cardContainer: {
+    width: "100%",
+    height: 200,
+    borderRadius: 20,
+    alignItems: "center",
+  },
   account: {
-    margin: 80,
+    marginTop: 40,
     alignItems: "center",
   },
   row: {

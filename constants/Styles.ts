@@ -11,10 +11,12 @@ export const defaultStyles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "700",
   },
-  pillButton: {
+  button: {
+    backgroundColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 0,
     padding: 10,
     height: 60,
-    borderRadius: 40,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -33,7 +35,7 @@ export const defaultStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
   },
-  pillButtonSmall: {
+  buttonSmall: {
     paddingHorizontal: 20,
     height: 40,
     borderRadius: 20,

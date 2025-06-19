@@ -120,7 +120,7 @@ const Page = () => {
 
         <TouchableOpacity
           style={[
-            defaultStyles.pillButton,
+            defaultStyles.button,
             phoneNumber !== "" ? styles.enabled : styles.disabled,
             { marginBottom: 20 },
           ]}
@@ -150,7 +150,7 @@ const Page = () => {
         <TouchableOpacity
           onPress={() => onSignIn(SignInType.Email)}
           style={[
-            defaultStyles.pillButton,
+            defaultStyles.button,
             {
               flexDirection: "row",
               gap: 16,
@@ -167,7 +167,7 @@ const Page = () => {
         <TouchableOpacity
           onPress={() => router.push("/(authenticated)/(tabs)/home")}
           style={[
-            defaultStyles.pillButton,
+            defaultStyles.button,
             {
               flexDirection: "row",
               gap: 16,

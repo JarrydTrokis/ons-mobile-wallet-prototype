@@ -25,7 +25,7 @@ const Page = () => {
         <Link
           href={"/login"}
           style={[
-            defaultStyles.pillButton,
+            defaultStyles.button,
             { flex: 1, backgroundColor: OnsColors.onsColorNightBlue },
           ]}
           asChild
@@ -38,10 +38,7 @@ const Page = () => {
         </Link>
         <Link
           href={"/signup"}
-          style={[
-            defaultStyles.pillButton,
-            { flex: 1, backgroundColor: "#fff" },
-          ]}
+          style={[defaultStyles.button, { flex: 1, backgroundColor: "#fff" }]}
           asChild
         >
           <TouchableOpacity>
@@ -74,9 +71,9 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: "row",
+    alignSelf: "flex-end",
     justifyContent: "center",
     gap: 20,
-    marginBottom: 60,
     paddingHorizontal: 20,
   },
 });
